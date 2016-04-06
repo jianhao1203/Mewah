@@ -1,5 +1,5 @@
 function login(regID){
-	alert(regID);
+	//alert(regID);
 	loading.startLoading();
 	var username=$("#username").val();
     var password=$("#pwd").val();
