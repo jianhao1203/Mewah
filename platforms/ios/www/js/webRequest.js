@@ -1,12 +1,12 @@
-var webUrlDeviceRegister = "http://pg-portal-d2/MobileApp/DirectLogin.aspx";
-var webUrl = "http://pg-portal-d2/MobileApp/DirectLogin.aspx";
-var webUrlmenu = "http://pg-portal-d2/MobileApp/Menu.aspx";
-var webUrlLeave = "http://pg-portal-d2/MobileApp/Leave/LeaveApprovalList.aspx";
-var webUrlLeaveApproveOne = "http://pg-portal-d2/MobileApp/Leave/LeaveApprove.aspx";
-var webUrlLeaveRejectOne = "http://pg-portal-d2/MobileApp/Leave/LeaveReject.aspx";
-var webUrlLeaveApproveAll = "http://pg-portal-d2/MobileApp/Leave/LeaveApproveAll.aspx";
+var webUrlDeviceRegister = "http://58.26.26.8/MobileApp/DirectLogin.aspx";
+var webUrl = "http://58.26.26.8/MobileApp/DirectLogin.aspx";
+var webUrlmenu = "http://58.26.26.8/MobileApp/Menu.aspx";
+var webUrlLeave = "http://58.26.26.8/MobileApp/Leave/LeaveApprovalList.aspx";
+var webUrlLeaveApproveOne = "http://58.26.26.8/MobileApp/Leave/LeaveApprove.aspx";
+var webUrlLeaveRejectOne = "http://58.26.26.8/MobileApp/Leave/LeaveReject.aspx";
+var webUrlLeaveApproveAll = "http://58.26.26.8/MobileApp/Leave/LeaveApproveAll.aspx";
 
-var apiTimeout=30000;
+var apiTimeout=50000;
 //postLogin(username, password, regId, devicePlatform, imei);
 function postLogin(username, password, regId, devicePlatform, imei){
    var requestUrl=webUrl; 
