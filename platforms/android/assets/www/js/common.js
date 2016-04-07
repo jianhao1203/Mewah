@@ -152,6 +152,7 @@ function successDeleteProfile(){
 //////////////////////////////////////////////////////////////////////////////////////
 
 function GetDeviceInfo(regId, username, password){
+    //alert('a');
 	var registerID = regId;
 	var devicePlatform = device.platform;
 	var imei = device.uuid;
