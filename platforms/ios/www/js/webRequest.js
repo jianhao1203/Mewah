@@ -1,10 +1,10 @@
-var webUrlDeviceRegister = "http://192.168.0.28:100/MobileApp/DirectLogin.aspx";
-var webUrl = "http://192.168.0.28:100/MobileApp/DirectLogin.aspx";
-var webUrlmenu = "http://192.168.0.28:100/MobileApp/Menu.aspx";
-var webUrlLeave = "http://192.168.0.28:100/MobileApp/Leave/LeaveApprovalList.aspx";
-var webUrlLeaveApproveOne = "http://192.168.0.28:100/MobileApp/Leave/LeaveApprove.aspx";
-var webUrlLeaveRejectOne = "http://192.168.0.28:100/MobileApp/Leave/LeaveReject.aspx";
-var webUrlLeaveApproveAll = "http://192.168.0.28:100/MobileApp/Leave/LeaveApproveAll.aspx";
+var webUrlDeviceRegister = "http://58.26.26.8/MobileApp/DirectLogin.aspx";
+var webUrl = "http://58.26.26.8/MobileApp/DirectLogin.aspx";
+var webUrlmenu = "http://58.26.26.8/MobileApp/Menu.aspx";
+var webUrlLeave = "http://58.26.26.8/MobileApp/Leave/LeaveApprovalList.aspx";
+var webUrlLeaveApproveOne = "http://58.26.26.8/MobileApp/Leave/LeaveApprove.aspx";
+var webUrlLeaveRejectOne = "http://58.26.26.8/MobileApp/Leave/LeaveReject.aspx";
+var webUrlLeaveApproveAll = "http://58.26.26.8/MobileApp/Leave/LeaveApproveAll.aspx";
 
 var apiTimeout=50000;
 
