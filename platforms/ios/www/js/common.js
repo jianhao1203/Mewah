@@ -16,6 +16,40 @@ var loading = {
     }
 };
 
+
+var popWindowApprove = {
+    
+    //add loading page when calll
+    openPop:function(tbl,refno){
+         //alert(tbl);
+         //alert(refno);
+        $(".app").prepend("<div class='popUpPage'><div class='popUpFrame'><h2 class='popUpTitleText'>Comments/Cancel Reason:</h2><br/><br/><textarea rows='4' cols='50' class='txtArealeaveRemarks' type='text' maxlength='200' id='txtleaveremarks'></textarea><br/><br/><button class='btnSubmitPopUp' onclick=\"approveOneByOneCompleted('"+tbl+"', '"+refno+"');\">Done</button></div></div>");
+    },
+    
+    //remove loading page when call
+    closePop:function(){
+        $(".popUpPage").remove();
+    }
+};
+
+
+var popWindowReject = {
+    
+    //add loading page when calll
+    openPop:function(tbl,refno){
+         //alert(tbl);
+         //alert(refno);
+        $(".app").prepend("<div class='popUpPage'><div class='popUpFrame'><h2 class='popUpTitleText'>Comments:</h2><br/><br/><textarea rows='4' cols='50' class='txtArealeaveRemarks' type='text' maxlength='200' id='txtleaveremarksreject'></textarea><br/><br/><button class='btnSubmitPopUp' onclick=\"rejectOneByOneCompleted('"+tbl+"', '"+refno+"');\">Done</button></div></div>");
+    },
+    
+    //remove loading page when call
+    closePop:function(){
+        $(".popUpPage").remove();
+    }
+};
+
+
+
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 
@@ -37,8 +71,11 @@ function onConfirm(button) {
 }
 
 function closeMenu(){
-	navigator.notification.confirm("Are you sure you want to exit ?", onConfirm, "Confirmation", "Yes,No");     
-            								   
+	navigator.notification.confirm("Are you sure you want to exit ?", onConfirm, "Confirmation", "Yes,No");          								   
+}
+
+function closeMenuHelpDesk(){
+	window.history.back();     								   
 }
 
 function closeLeave(){
@@ -181,8 +218,6 @@ function errorDeleteDevice(err){
 function successDeleteDevice(){
     navigator.notification.alert("Device table deleted success", function(){}, "Mewah Group", "Ok");
 }
-
-
 
 
 

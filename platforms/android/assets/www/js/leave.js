@@ -1,4 +1,4 @@
- function approveOneByOne(tbl, refno){
+function approveOneByOne(tbl, refno){
 	navigator.notification.confirm("Are you sure you want to approve this record ?", onApproveLeaveOne, "Confirmation", "Yes,No");     
 	
 	function onApproveLeaveOne(button) {
@@ -8,8 +8,9 @@
 			 //alert(id);
 			 //alert(userid);
 			 //alert('APPROVE!!');
-			 loading.startLoading();
-			 postapproveone(tbl, refno);
+			 popWindowApprove.openPop(tbl, refno);
+			 //loading.startLoading();
+			// postapproveone(tbl, refno);
 		}
 	}
 }
@@ -30,10 +31,6 @@ function onApproveLeaveAll(button) {
 
 
 
-
-
- 
-
 function rejectOneByOne(tbl, refno){
 	navigator.notification.confirm("Are you sure you want to reject this record ?", onRejectLeaveOne, "Confirmation", "Yes,No");     
 	
@@ -42,16 +39,33 @@ function rejectOneByOne(tbl, refno){
 			return;
 		 }else if(button==1){
 			 //alert('REJECT!!');
-			 loading.startLoading();
-			postrejectone(tbl, refno);
+			 popWindowReject.openPop(tbl, refno);
+			 //loading.startLoading();
+			 //postrejectone(tbl, refno);
 		}
 	}
 }
 
 
- 
+function approveOneByOneCompleted(tbl, refno)
+{
+	//alert(tbl);
+	//alert(refno);
+	var remarks=$("#txtleaveremarks").val();
+	//alert(remarks);
+	loading.startLoading();
+	postapproveone(tbl, refno, remarks);
+}
 
-
+function rejectOneByOneCompleted(tbl, refno)
+{
+	//alert(tbl);
+	//alert(refno);
+	var remarks=$("#txtleaveremarksreject").val();
+	//alert(remarks);
+	loading.startLoading();
+	postrejectone(tbl, refno, remarks);
+}
 
 
 

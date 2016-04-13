@@ -1,10 +1,19 @@
-var webUrlDeviceRegister = "http://58.26.26.8/MobileApp/DirectLogin.aspx";
-var webUrl = "http://58.26.26.8/MobileApp/DirectLogin.aspx";
-var webUrlmenu = "http://58.26.26.8/MobileApp/Menu.aspx";
-var webUrlLeave = "http://58.26.26.8/MobileApp/Leave/LeaveApprovalList.aspx";
-var webUrlLeaveApproveOne = "http://58.26.26.8/MobileApp/Leave/LeaveApprove.aspx";
-var webUrlLeaveRejectOne = "http://58.26.26.8/MobileApp/Leave/LeaveReject.aspx";
-var webUrlLeaveApproveAll = "http://58.26.26.8/MobileApp/Leave/LeaveApproveAll.aspx";
+//var webUrlDeviceRegister = "http://58.26.26.8/MobileApp/DirectLogin.aspx";
+//var webUrl = "http://58.26.26.8/MobileApp/DirectLogin.aspx";
+//var webUrlmenu = "http://58.26.26.8/MobileApp/Menu.aspx";
+//var webUrlLeave = "http://58.26.26.8/MobileApp/Leave/LeaveApprovalList.aspx";
+//var webUrlLeaveApproveOne = "http://58.26.26.8/MobileApp/Leave/LeaveApprove.aspx";
+//var webUrlLeaveRejectOne = "http://58.26.26.8/MobileApp/Leave/LeaveReject.aspx";
+//var webUrlLeaveApproveAll = "http://58.26.26.8/MobileApp/Leave/LeaveApproveAll.aspx";
+
+
+var webUrlDeviceRegister = "http://192.168.0.28:100/MobileApp/DirectLogin.aspx";
+var webUrl = "http://192.168.0.28:100/MobileApp/DirectLogin.aspx";
+var webUrlmenu = "http://192.168.0.28:100/MobileApp/Menu.aspx";
+var webUrlLeave = "http://192.168.0.28:100/MobileApp/Leave/LeaveApprovalList.aspx";
+var webUrlLeaveApproveOne = "http://192.168.0.28:100/MobileApp/Leave/LeaveApprove.aspx";
+var webUrlLeaveRejectOne = "http://192.168.0.28:100/MobileApp/Leave/LeaveReject.aspx";
+var webUrlLeaveApproveAll = "http://192.168.0.28:100/MobileApp/Leave/LeaveApproveAll.aspx";
 
 var apiTimeout=50000;
 
@@ -191,6 +200,7 @@ function postLogin(username, password, regId, devicePlatform, imei){
 }
 
 function postMenu(username, password){
+   //alert('wow');
    $.support.cors = true;
    var requestUrl=webUrlmenu + "?ID="+username+"&PW="+password; 
     $.ajax({
@@ -205,7 +215,10 @@ function postMenu(username, password){
 	  success: function(data, status, xhr){
 			if(data.message == 'Logon Success')
 			{
+				//alert('hey');
 				//storeProfile(username, password);
+				$(".circleNotice").text(data.LeaveApproval);
+				//$(".circleNotice").text("98");
 			}
 			else
 			{
@@ -285,10 +298,12 @@ function loadleaverecord(){
 			  success: function(data, status, xhr){
 					//alert(data.length);
 					for (var x = 0; x < data.length; x++) {
-						$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2'><h1 class='listviewitemtitleLV'>"+ data[x].Name +" ("+data[x].Department+") </h1><p class='listviewitemdetails1LV'>"+data[x].From_date+" ~ "+data[x].To_date+"</p><p class='listviewitemdetails2LV'>"+data[x].Leave_type+"</p><p class='listviewitemdetails3LV'>Reason : "+data[x].Reason+"</p></td><td width=10%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('"+data[x].tbl+"', '"+data[x].refno+"');\" ></td></tr><tr><td width=10% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('"+data[x].tbl+"', '"+data[x].refno+"');\"></td></tr></table></li>");
+						$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>"+ data[x].Name +" ("+data[x].Department+") </p><p class='listviewitemdetails1LV'>"+data[x].From_date+" ~ "+data[x].To_date+"</p><p class='listviewitemdetails2LV'>"+data[x].Leave_type+"</p><p class='listviewitemdetails3LV'>Reason : "+data[x].Reason+"</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('"+data[x].tbl+"', '"+data[x].refno+"');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('"+data[x].tbl+"', '"+data[x].refno+"');\"></td></tr></table></li>");
 					}
 					//loading.endLoading();
-					
+					//$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT) </p><p class='listviewitemdetails1LV'>2016-04-27 ~ 2016-04-28</p><p class='listviewitemdetails2LV'>Annual Testing</p><p class='listviewitemdetails3LV'>Reason : Testing used</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12', '12');\" ></td></tr><tr><td width=10% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12', '12');\"></td></tr></table></li>");
+					//$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT) </p><p class='listviewitemdetails1LV'>2016-04-27 ~ 2016-04-28</p><p class='listviewitemdetails2LV'>Annual Testing</p><p class='listviewitemdetails3LV'>Reason : Testing used many many many many many many lol lol lol lol gosh gosh yoyoyoyoyo jackjack jack</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12', '12');\" ></td></tr><tr><td width=10% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12', '12');\"></td></tr></table></li>");
+						
 			  },
 			  error: function(xhr, ajaxOptions, thrownError) {
 				  alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
@@ -343,7 +358,7 @@ function postapproveall(){
    });
 }
 
-function postapproveone(tbl, refno){
+function postapproveone(tbl, refno, remarks){
 	//alert(tbl);
 	//alert(refno);
 	$.support.cors = true;
@@ -364,7 +379,7 @@ function postapproveone(tbl, refno){
 	   {
 		    //alert(returnData.rows.item(0).userid);
 			//alert(returnData.rows.item(0).password);
-		    var requestUrl=webUrlLeaveApproveOne + "?ID="+returnData.rows.item(0).userid+"&PW="+returnData.rows.item(0).password+"&TBL="+tbl+"&Refno="+refno;
+		    var requestUrl=webUrlLeaveApproveOne + "?ID="+returnData.rows.item(0).userid+"&PW="+returnData.rows.item(0).password+"&TBL="+tbl+"&Refno="+refno+"&rmk="+remarks;
 			$.ajax({
 			  url: requestUrl,
 			  type: "POST",
@@ -396,7 +411,7 @@ function postapproveone(tbl, refno){
    });
 }
 
-function postrejectone(tbl, refno){
+function postrejectone(tbl, refno, remarks){
     $.support.cors = true;
 	if(tbl=='PGleaveDetail'){
 		tbl  = 'PGLeaveDetail';
@@ -415,7 +430,8 @@ function postrejectone(tbl, refno){
 	   {
 		    //alert(returnData.rows.item(0).userid);
 			//alert(returnData.rows.item(0).password);
-		    var requestUrl=webUrlLeaveRejectOne + "?ID="+returnData.rows.item(0).userid+"&PW="+returnData.rows.item(0).password+"&TBL="+tbl+"&Refno="+refno;
+		    var requestUrl=webUrlLeaveRejectOne + "?ID="+returnData.rows.item(0).userid+"&PW="+returnData.rows.item(0).password+"&TBL="+tbl+"&Refno="+refno+"&rmk="+remarks;
+			//alert(requestUrl);
 			$.ajax({
 			  url: requestUrl,
 			  type: "POST",

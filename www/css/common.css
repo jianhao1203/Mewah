@@ -12,13 +12,15 @@
 
 
 .loadingFrame{
+    top:45%;
     position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 14vw;
-    height: 14vw;
+    align-items: center;
+    left: 42%;
+    right: 42%;
+    width: 16%;
+    padding-top:16%;
+    height: auto;
+    align:center;
     background-color: black;
     border-radius: 10px;
     margin: auto;
@@ -34,6 +36,30 @@
 }
 
 
+
+.popUpPage{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*background-color: transparent*/
+    background-color: rgba(0,0,0,0.3);
+    z-index: 99;
+}
+
+
+.popUpFrame{
+    position: absolute;
+    top:10%;
+    bottom: 47%;
+    left: 7%;
+    right: 7%;
+    width: 86%;
+    height: 43%;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    margin: auto;
+    z-index: 99;
+}
 
 /* Loading Style end */
 /* ------------------------------------------------------------------------------------*/

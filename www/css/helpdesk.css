@@ -1,8 +1,8 @@
 
-.wrapperLV{
-    height: 60%;
+.wrapperLVhelpdesk{
+    height: 68%;
     width: 90%;
-    top: 34%;
+    top: 26%;
 	bottom: 10%;
 	left: 5%;
 	right: 5%;
@@ -20,14 +20,14 @@
 	border-color: #66CCFF;
 }
 
-.scroll-contentLV {
+.scroll-contentLVhelpdesk {
     position:absolute; 
     z-index:1;
     width:100%;
     padding:0;
 }
 
-.scrollulLV{
+.scrollulLVhelpdesk{
     list-style:none;
     padding:0;
     margin:0;
@@ -36,14 +36,14 @@
     text-align:left;
 }
 
-.listviewitemframeLV{
+.listviewitemframeLVhelpdesk{
     height:100%; 
     width:100%;
     vertical-align: top;
     text-align: left;
 }
 
-.listviewitemtitleLV{
+.listviewitemtitleLVhelpdesk{
     color: #000000;
     background-color: transparent;
     font-weight: bold;
@@ -55,14 +55,14 @@
     overflow: hidden;
 }
 
-.listviewimgLV{
-    width: 95%;
+.listviewimgLVhelpdeskhelpdesk{
+    width: 14vw;
     margin: 0px 0px 2px 0px;
     height: auto;
     display: block;
 }
 
-.listviewitemdetails1LV{
+.listviewitemdetails1LVhelpdesk{
     color: #4d2600;
     background-color: transparent;
     font-family: "Roboto-Regular";
@@ -76,7 +76,7 @@
     overflow: hidden;
 }
 
-.listviewitemdetails2LV{
+.listviewitemdetails2LVhelpdesk{
     color: #000000;
     background-color: transparent;
     font-family: "Roboto-Regular";
@@ -90,7 +90,7 @@
     overflow: hidden;
 }
 
-.listviewitemdetails3LV{
+.listviewitemdetails3LVhelpdesk{
     color: #000000;
     background-color: transparent;
     font-family: "Roboto-Regular";
@@ -104,7 +104,7 @@
     overflow: hidden;
 }
 
-.scrollliLV {
+.scrollliLVhelpdesk {
     margin:0px 0px 0px 0px;
     padding:0px 0px 0px 0px;
     height:auto;
@@ -116,7 +116,7 @@
 	border-top: 1px solid #66CCFF;
 }
 
-.scrollliLV:hover {
+.scrollliLVhelpdesk:hover {
     background-color: white;
 }
 

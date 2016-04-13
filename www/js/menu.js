@@ -3,6 +3,11 @@ function directLeave() {
     window.location="leave.html";
 }
 
+function directHelpDesk() {
+    window.location="helpdesklist.html";
+}
+
+
 
 
 function ValidateProfile(){
