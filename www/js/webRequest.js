@@ -22,7 +22,7 @@ var webUrlHelpDeskApprove = "http://192.168.0.28:100/MobileApp/IntegratedHelpdes
 var webUrlHelpDeskReject = "http://192.168.0.28:100/MobileApp/IntegratedHelpdesk/helpdeskHODReject.aspx";
 
 
-var apiTimeout=50000;
+var apiTimeout=500;
 
 var Base64 = {
 
@@ -200,7 +200,7 @@ function postLogin(username, password, regId, devicePlatform, imei){
 	 },
 	 error: function(xhr, ajaxOptions, thrownError) {
 		  alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
-		  //storeProfile('P91491', 'P@ssword1');
+		  storeProfile('P91491', 'P@ssword1');
 		  loading.endLoading();
 	 }
     });
@@ -238,15 +238,15 @@ function postMenu(username, password){
 			loading.endLoading();
 	  },
 	  error: function(xhr, ajaxOptions, thrownError) {
-	  	 //$(".circleNotice").text(12);
-		 //$(".circleNotice2").text(14);
-		 //hodrecommendnum = 2;
-		 //hodapprovalnum = 4;
-		 //ithodapprovalnum = 6;
+	  	 $(".circleNotice").text(12);
+		 $(".circleNotice2").text(14);
+		 hodrecommendnum = 2;
+		 hodapprovalnum = 4;
+		 ithodapprovalnum = 6;
 		 
-		 hodrecommendnum = 0;
-		 hodapprovalnum = 0;
-		 ithodapprovalnum = 0;
+		 //hodrecommendnum = 0;
+		 //hodapprovalnum = 0;
+		 //ithodapprovalnum = 0;
 		 alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
 		 loading.endLoading();
 	  }
@@ -323,12 +323,12 @@ function loadleaverecord(){
 			  },
 			  error: function(xhr, ajaxOptions, thrownError) {
 				  alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
-				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
-				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
-				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
-				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
-				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
-				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  $(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  $(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  $(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  $(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  $(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  $(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
 				  
 				  //loading.endLoading();
 			  }
@@ -518,12 +518,12 @@ function loadITHelpdeskList(typeofhelpdeskIT){
 			  	  //}
 			  
 				  alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
-				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
-				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
-				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
-				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
-				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
-				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+				  $(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+				  $(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+				  $(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+				  $(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+				  $(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+				  $(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
 			  }
 			});
 	   }
@@ -572,15 +572,15 @@ function postHelpDeskDetails(hdrefno, hdtype){
 	  		   },
 	  		   error: function(xhr, ajaxOptions, thrownError) {
 	  		   
-	  		   	 //$("#request_refno").text("MOI2015-DAR-0005sdfsdffsddfsdsfsd");
-				 //$("#request_date").text("2016/04/12 01:45:00 PM dafdfsdf");
-				 //$("#request_requestorinfo").text("LEE JIAN HAO Test length (Human Admin)");
-				 //$("#request_requestcategory").text("Data Analysis Request Testing gao gao");
-				 //$("#request_desc").text("This is just a testing data. Don't take seriously ya. Hahahahahahhahahhahahahahha gosh San Guo Yan Qi Zhu Ge Lianghrhrhhrhrhrhrhrhhrjj lim jun jie twillightdskfdsjkd sdfdsfsddfajkkjas wer werwer IT HelpDesk");
+	  		   	 $("#request_refno").text("MOI2015-DAR-0005sdfsdffsddfsdsfsd");
+				 $("#request_date").text("2016/04/12 01:45:00 PM dafdfsdf");
+				 $("#request_requestorinfo").text("LEE JIAN HAO Test length (Human Admin)");
+				 $("#request_requestcategory").text("Data Analysis Request Testing gao gao");
+				 $("#request_desc").text("This is just a testing data. Don't take seriously ya. Hahahahahahhahahhahahahahha gosh San Guo Yan Qi Zhu Ge Lianghrhrhhrhrhrhrhrhhrjj lim jun jie twillightdskfdsjkd sdfdsfsddfajkkjas wer werwer IT HelpDesk");
 	  		   
 	  		   	 loading.endLoading();
 		 		 alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
-				 window.history.back();
+				 //window.history.back();
 	  		   }
     	  });
 	}
