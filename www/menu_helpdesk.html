@@ -7,12 +7,11 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width, target-densitydpi=medium-dpi" />
 		<title>IT HelpDesk Menu Page</title>
-		
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/webRequest.js"></script>
         <script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript" src="js/menu.js"></script>
+		<script type="text/javascript" src="js/menuhelpdesk.js"></script>
 		<script type="text/javascript" src="js/jquery-mobile/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript">
             $(document).bind("mobileinit",function(){
@@ -21,12 +20,46 @@
             })
         </script>
         <script type="text/javascript" src="js/jquery-mobile/jquery.mobile-1.4.5.js"></script>
-		
-		
         <link rel="stylesheet" type="text/css" href="css/index.css" /> 
 		<link rel="stylesheet" type="text/css" href="css/common.css" />
-		
         <script type="text/javascript">
+        	function checkMenuDisplay(){
+        		if(var1 == 0){
+        			$('#menu1').hide();
+        			$('#circleNoticeHD1').hide();
+        		}
+        		
+        		if(var2 == 0){
+        			$('#menu2').hide();
+        			$('#circleNoticeHD2').hide();
+        		}
+        		
+        		if(var3 == 0){
+        			$('#menu3').hide();
+        			$('#circleNoticeHD3').hide();
+        		}
+        		
+        		$(".circleNoticeHD1").text(var1);
+        		$(".circleNoticeHD2").text(var2);
+        		$(".circleNoticeHD3").text(var3);
+        		
+        		if(var1==0 && var2!=0 && var3==0){
+        			document.getElementById('menu2').style.setProperty("top", "25%");
+        			document.getElementById('circleNoticeHD2').style.setProperty("top", "25%");
+        		} else if(var1==0 && var2!=0 && var3!=0){
+        			document.getElementById('menu2').style.setProperty("top", "25%");
+        			document.getElementById('menu3').style.setProperty("top", "48%");
+        			document.getElementById('circleNoticeHD2').style.setProperty("top", "25%");
+        			document.getElementById('circleNoticeHD3').style.setProperty("top", "48%");
+        		} else if(var1==0 && var2==0 && var3!=0){
+        			document.getElementById('menu3').style.setProperty("top", "25%");
+        			document.getElementById('circleNoticeHD3').style.setProperty("top", "25%");
+        		} else if(var1!=0 && var2==0 && var3!=0){
+        			document.getElementById('menu3').style.setProperty("top", "48%");
+        			document.getElementById('circleNoticeHD3').style.setProperty("top", "48%");
+        		}
+        	}
+        
 			dbmanager.initdb();
 			dbmanager.createTable();
 			ValidateProfile();
@@ -55,35 +88,44 @@
     <body>
         <div class="app" id="app">
             <div class="content">
-				 <div class="backbuttonFrame">
-                    <img class="backLogo" onclick="closeMenuHelpdesk();" src="img/back.png" style="display:none;"/>
-                </div>
                 <div class="titlelogoframe">
                     <img class="titlelogo" src="img/logo.png" />
+                </div>
+                <div class="backbuttonFrame">
+                    <img class="backLogo" onclick="closeMenuHelpdesk();" src="img/back.png"/>
                 </div>
 				<div class="logoutbuttonFrame">
                     <img class="logoutLogo" onclick="postLogout();" src="img/logout.png"/>
                 </div>
 				
                 <div class="menuDetails">
-                    <button class="menuItems" onclick="directLeave();">
-                    	Leave Approval            	
+                    <button class="menuhelpdeskItems" id="menu1" onclick="directApproval('hodrecommend');">
+                    	HOD Recommendation            	
                     </button>
-                    <p class="circleNotice">
+                    <p class="circleNoticeHD1"  id="circleNoticeHD1">
     							0		
   					</p>  
-                    <button class="menuItems2" onclick="directHelpDesk();">
-                    	IT HelpDesk
+                    <button class="menuhelpdeskItems2" id="menu2" onclick="directApproval('hodapproval');">
+                    	HOD Approval
                     </button>
-                    <p class="circleNotice2">
-    							0	
-  					</p>
+                    <p class="circleNoticeHD2" id="circleNoticeHD2">
+    							0		
+  					</p> 
+                    <button class="menuhelpdeskItems3" onclick="directApproval('ithodapproval');" id="menu3">
+                    	IT HOD Approval
+                    </button>
+                    <p class="circleNoticeHD3" id="circleNoticeHD3">
+    							0		
+  					</p> 
                 </div> 
             </div>
         </div>
 		<script type="text/javascript">
             app.initialize();
-			//setcopyrighttext();
+            var1 = getURLParameter('counthodrecommend');
+        	var2 = getURLParameter('counthodapproval');
+        	var3 = getURLParameter('countithodapproval');
+        	checkMenuDisplay();
         </script>
     </body>
 </html>

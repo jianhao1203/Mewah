@@ -1,8 +1,8 @@
 
 .wrapperLVhelpdesk{
-    height: 68%;
+    height: 70%;
     width: 90%;
-    top: 26%;
+    top: 24%;
 	bottom: 10%;
 	left: 5%;
 	right: 5%;
@@ -56,7 +56,7 @@
 }
 
 .listviewimgLVhelpdeskhelpdesk{
-    width: 14vw;
+    width: 95%;
     margin: 0px 0px 2px 0px;
     height: auto;
     display: block;
@@ -70,7 +70,7 @@
     font-weight: normal;
     line-height: 3.6vw;
     text-align: justify;
-    margin: 0px 0px 0px 10px;
+    margin: 0px 0px 5px 10px;
     max-height: 15vw;
     text-overflow: clip;
     overflow: hidden;
@@ -84,21 +84,7 @@
     font-weight: normal;
     line-height: 3.6vw;
     text-align: justify;
-    margin: 3px 0px 0px 10px;
-    max-height: 15vw;
-    text-overflow: clip;
-    overflow: hidden;
-}
-
-.listviewitemdetails3LVhelpdesk{
-    color: #000000;
-    background-color: transparent;
-    font-family: "Roboto-Regular";
-    font-size: 3.2vw;
-    font-weight: normal;
-    line-height: 3.6vw;
-    text-align: justify;
-    margin: 3px 0px 10px 10px;
+    margin: 0px 0px 5px 10px;
     max-height: 15vw;
     text-overflow: clip;
     overflow: hidden;
@@ -120,3 +106,117 @@
     background-color: white;
 }
 
+/*************************************************/
+
+
+.boxhelpdeskdetails{
+    height: 66%;
+    width: 90%;
+    top: 24%;
+	bottom: 10%;
+	left: 5%;
+	right: 5%;
+    align-items: center;
+    background-color: #ffffff;
+    position: absolute;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    display: block;
+    overflow:auto;
+	border-style: solid;
+    border-width: 2px;
+	border-radius: 5px;
+	border-color: #66CCFF;
+}
+
+.request_refno{
+    text-align:center;
+	align-items: center;
+	bottom:1%;
+	margin-top:5px;
+	padding-top:0px;
+	width:100%;
+	font-size: 5vw;
+	vertical-align: top;
+    color: black;
+    font-family: "Helvetica";
+    /*border-style: solid;
+    border-width: 1px;
+	border-radius: 2px;
+	border-color: #66CCFF;*/
+}
+
+.request_date{
+	margin:0px 0px 5px 0px;
+	/*padding: 0px 2px 0px 0px;*/
+	font-size: 3.2vw;
+    color: #4d2600;
+    font-family: "Helvetica";
+    text-overflow: clip;
+    overflow: hidden;
+}
+
+.request_requestorinfo{
+	margin:0px 0px 5px 0px;
+	/*padding: 0px 2px 0px 0px;*/
+	font-size: 3.2vw;
+    color: #4d2600;
+    font-family: "Helvetica";
+    text-overflow: clip;
+    overflow: hidden;
+}
+
+.request_requestcategory{
+	margin:0px 0px 5px 0px;
+	/*padding: 0px 2px 0px 0px;*/
+	font-size: 3.2vw;
+    color: #4d2600;
+    font-family: "Helvetica";
+    text-overflow: clip;
+    overflow: hidden;
+}
+
+.request_desc{
+	margin:0px 0px 5px 0px;
+	font-size: 3.2vw;
+	width:90%;
+    color: #4d2600;
+    font-family: "Helvetica";
+    word-wrap:break-word;
+    text-overflow: clip;
+    overflow: hidden;
+}
+
+
+
+.request_date_title{
+    margin:0px 0px 0px 0px;
+	padding: 0px 0px 0px 2px;
+	font-size: 3.2vw;
+    color: black;
+    font-family: "Helvetica";
+}
+
+.request_requestorinfo_title{
+	margin:0px 0px 0px 0px;
+	padding: 0px 0px 0px 2px;
+	font-size: 3.2vw;
+    color: black;
+    font-family: "Helvetica";
+}
+
+.request_requestcategory_title{
+	margin:0px 0px 0px 0px;
+	padding: 0px 0px 0px 2px;
+	font-size: 3.2vw;
+    color: black;
+    font-family: "Helvetica";
+}
+
+.request_desc_title{
+	margin:0px 0px 0px 0px;
+	padding: 0px 0px 0px 2px;
+	font-size: 3.2vw;
+    color: black;
+    font-family: "Helvetica";
+}

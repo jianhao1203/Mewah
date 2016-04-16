@@ -1,24 +1,21 @@
-function approveOneByOne(tbl, refno){
+/*function approveOneByOne(tbl, refno){
 	navigator.notification.confirm("Are you sure you want to approve this record ?", onApproveLeaveOne, "Confirmation", "Yes,No");     
 	
 	function onApproveLeaveOne(button) {
 		if(button==2){//If User selected No, then we just do nothing
 			return;
 		 }else if(button==1){
-			 //alert(id);
-			 //alert(userid);
-			 //alert('APPROVE!!');
 			 popWindowApprove.openPop(tbl, refno);
-			 //loading.startLoading();
-			// postapproveone(tbl, refno);
 		}
 	}
-}
+}*/
 
+function approveOneByOne(tbl, refno){
+	popWindowApprove.openPop(tbl, refno);
+}
 
 function callapproveall(){
 	navigator.notification.confirm("Are you sure you want to approve all ?", onApproveLeaveAll, "Confirmation", "Yes,No");     
-	
 }
 
 function onApproveLeaveAll(button) {
@@ -29,21 +26,20 @@ function onApproveLeaveAll(button) {
 	}
 }
 
-
-
-function rejectOneByOne(tbl, refno){
+/*function rejectOneByOne(tbl, refno){
 	navigator.notification.confirm("Are you sure you want to reject this record ?", onRejectLeaveOne, "Confirmation", "Yes,No");     
 	
 	function onRejectLeaveOne(button) {
-		if(button==2){//If User selected No, then we just do nothing
+		if(button==2){
 			return;
 		 }else if(button==1){
-			 //alert('REJECT!!');
 			 popWindowReject.openPop(tbl, refno);
-			 //loading.startLoading();
-			 //postrejectone(tbl, refno);
 		}
 	}
+}*/
+
+function rejectOneByOne(tbl, refno){
+	popWindowReject.openPop(tbl, refno);
 }
 
 
@@ -67,6 +63,16 @@ function rejectOneByOneCompleted(tbl, refno)
 	postrejectone(tbl, refno, remarks);
 }
 
+
+function closePopupApprove()
+{
+	popWindowApprove.closePop();
+}
+
+function closePopupReject()
+{
+	popWindowReject.closePop();
+}
 
 
 

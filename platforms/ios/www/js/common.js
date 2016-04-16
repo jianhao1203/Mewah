@@ -23,7 +23,7 @@ var popWindowApprove = {
     openPop:function(tbl,refno){
          //alert(tbl);
          //alert(refno);
-        $(".app").prepend("<div class='popUpPage'><div class='popUpFrame'><h2 class='popUpTitleText'>Comments/Cancel Reason:</h2><br/><br/><textarea rows='4' cols='50' class='txtArealeaveRemarks' type='text' maxlength='200' id='txtleaveremarks'></textarea><br/><br/><button class='btnSubmitPopUp' onclick=\"approveOneByOneCompleted('"+tbl+"', '"+refno+"');\">Done</button></div></div>");
+        $(".app").prepend("<div class='popUpPage'><div class='popUpFrame'><h2 class='popUpTitleText'>Comments:</h2><br/><br/><textarea rows='4' cols='50' class='txtArealeaveRemarks' type='text' maxlength='200' id='txtleaveremarks'></textarea><br/><br/><button class='btnSubmitPopUp' onclick=\"approveOneByOneCompleted('"+tbl+"', '"+refno+"');\">Submit</button><button class='btnCancelApprove' onclick='closePopupApprove();'>Cancel</button></div></div>");
     },
     
     //remove loading page when call
@@ -39,7 +39,39 @@ var popWindowReject = {
     openPop:function(tbl,refno){
          //alert(tbl);
          //alert(refno);
-        $(".app").prepend("<div class='popUpPage'><div class='popUpFrame'><h2 class='popUpTitleText'>Comments:</h2><br/><br/><textarea rows='4' cols='50' class='txtArealeaveRemarks' type='text' maxlength='200' id='txtleaveremarksreject'></textarea><br/><br/><button class='btnSubmitPopUp' onclick=\"rejectOneByOneCompleted('"+tbl+"', '"+refno+"');\">Done</button></div></div>");
+        $(".app").prepend("<div class='popUpPage'><div class='popUpFrame'><h2 class='popUpTitleText'>Comments:</h2><br/><br/><textarea rows='4' cols='50' class='txtArealeaveRemarks' type='text' maxlength='200' id='txtleaveremarksreject'></textarea><br/><br/><button class='btnSubmitPopUp' onclick=\"rejectOneByOneCompleted('"+tbl+"', '"+refno+"');\">Submit</button><button class='btnCancelReject' onclick='closePopupReject();'>Cancel</button></div></div>");
+    },
+    
+    //remove loading page when call
+    closePop:function(){
+        $(".popUpPage").remove();
+    }
+};
+
+
+var popWindowHelpDeskApprove = {
+    
+    //add loading page when calll
+    openPop:function(typehelpdesk,refno){
+         //alert(tbl);
+         //alert(refno);
+        $(".app").prepend("<div class='popUpPage'><div class='popUpFrame'><h3 class='popUpTitleText'>Comments:</h3><br/><br/><textarea rows='4' cols='50' class='txtAreaHelpDesk' type='text' maxlength='200' id='txtAreaApproveHelpDesk'></textarea><br/><br/><button class='btnSubmitPopUp' onclick=\"approveOneByOneHelpDeskCompleted('"+typehelpdesk+"', '"+refno+"');\">Submit</button><button class='btnCancelApprove' onclick='closePopupHelpDeskApprove();'>Cancel</button></div></div>");
+    },
+    
+    //remove loading page when call
+    closePop:function(){
+        $(".popUpPage").remove();
+    }
+};
+
+
+var popWindowHelpDeskReject = {
+    
+    //add loading page when calll
+    openPop:function(typehelpdesk,refno){
+         //alert(tbl);
+         //alert(refno);
+        $(".app").prepend("<div class='popUpPage'><div class='popUpFrame'><h3 class='popUpTitleText'>Comments:</h3><br/><br/><textarea rows='4' cols='50' class='txtAreaHelpDesk' type='text' maxlength='200' id='txtAreaRejectHelpDesk'></textarea><br/><br/><button class='btnSubmitPopUp' onclick=\"rejectOneByOneHelpDeskCompleted('"+typehelpdesk+"', '"+refno+"');\">Submit</button><button class='btnCancelReject' onclick='closePopupHelpDeskReject();'>Cancel</button></div></div>");
     },
     
     //remove loading page when call
@@ -74,11 +106,17 @@ function closeMenu(){
 	navigator.notification.confirm("Are you sure you want to exit ?", onConfirm, "Confirmation", "Yes,No");          								   
 }
 
-function closeMenuHelpDesk(){
+function closeMenuHelpdesk(){
 	window.history.back();     								   
 }
 
 function closeLeave(){
+    //alert("yeah");
+	//history.go(0);
+	window.history.back();
+}
+
+function closeHelpDesk(){
     //alert("yeah");
 	//history.go(0);
 	window.history.back();
@@ -193,6 +231,7 @@ function GetDeviceInfo(regId, username, password){
 	var registerID = regId;
 	var devicePlatform = device.platform;
 	var imei = device.uuid;
+	
 	//alert(devicePlatform);
 	//alert(registerID);
 	//alert(device.uuid);
@@ -220,4 +259,7 @@ function successDeleteDevice(){
 }
 
 
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+}
 

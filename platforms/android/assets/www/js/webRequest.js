@@ -1,19 +1,26 @@
-//var webUrlDeviceRegister = "http://58.26.26.8/MobileApp/DirectLogin.aspx";
 //var webUrl = "http://58.26.26.8/MobileApp/DirectLogin.aspx";
 //var webUrlmenu = "http://58.26.26.8/MobileApp/Menu.aspx";
 //var webUrlLeave = "http://58.26.26.8/MobileApp/Leave/LeaveApprovalList.aspx";
 //var webUrlLeaveApproveOne = "http://58.26.26.8/MobileApp/Leave/LeaveApprove.aspx";
 //var webUrlLeaveRejectOne = "http://58.26.26.8/MobileApp/Leave/LeaveReject.aspx";
 //var webUrlLeaveApproveAll = "http://58.26.26.8/MobileApp/Leave/LeaveApproveAll.aspx";
+//var webUrlHelpDesk = "http://58.26.26.8/MobileApp/IntegratedHelpdesk/helpdeskhodapprovallist.aspx";
+//var webUrlHelpDeskDetails = "http://58.26.26.8/MobileApp/IntegratedHelpdesk/helpdeskhodapprovallist.aspx";
+//var webUrlHelpDeskApprove = "http://58.26.26.8/MobileApp/IntegratedHelpdesk/helpdeskHODApprove.aspx";
+//var webUrlHelpDeskReject = "http://58.26.26.8/MobileApp/IntegratedHelpdesk/helpdeskHODReject.aspx";
 
 
-var webUrlDeviceRegister = "http://192.168.0.28:100/MobileApp/DirectLogin.aspx";
 var webUrl = "http://192.168.0.28:100/MobileApp/DirectLogin.aspx";
 var webUrlmenu = "http://192.168.0.28:100/MobileApp/Menu.aspx";
 var webUrlLeave = "http://192.168.0.28:100/MobileApp/Leave/LeaveApprovalList.aspx";
 var webUrlLeaveApproveOne = "http://192.168.0.28:100/MobileApp/Leave/LeaveApprove.aspx";
 var webUrlLeaveRejectOne = "http://192.168.0.28:100/MobileApp/Leave/LeaveReject.aspx";
 var webUrlLeaveApproveAll = "http://192.168.0.28:100/MobileApp/Leave/LeaveApproveAll.aspx";
+var webUrlHelpDesk = "http://192.168.0.28:100/MobileApp/IntegratedHelpdesk/helpdeskhodapprovallist.aspx";
+var webUrlHelpDeskDetails = "http://192.168.0.28:100/MobileApp/IntegratedHelpdesk/helpdeskdetails.aspx";
+var webUrlHelpDeskApprove = "http://192.168.0.28:100/MobileApp/IntegratedHelpdesk/helpdeskHODApprove.aspx";
+var webUrlHelpDeskReject = "http://192.168.0.28:100/MobileApp/IntegratedHelpdesk/helpdeskHODReject.aspx";
+
 
 var apiTimeout=50000;
 
@@ -164,12 +171,11 @@ function make_base_auth(user, password) {
 }
 
 function postLogin(username, password, regId, devicePlatform, imei){
- //alert('lai');
- //alert(username);
- //alert(password);
+   //alert(username);
+   //alert(password);
    $.support.cors = true;
-   var requestUrl=webUrl + "?ID="+username+"&PW="+password+"&RID="+regId+"&IMEIID="+imei+"&PLATFORM="+devicePlatform; 
-    $.ajax({
+   var requestUrl=webUrl + "?ID="+username+"&PW="+password+"&RID="+regId+"&IMEIID="+imei+"&PLATFORM="+devicePlatform;
+   $.ajax({
       url: requestUrl,
       type: "POST",
       contentType: "application/json; charset=utf-8",
@@ -194,6 +200,7 @@ function postLogin(username, password, regId, devicePlatform, imei){
 	 },
 	 error: function(xhr, ajaxOptions, thrownError) {
 		  alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
+		  //storeProfile('P91491', 'P@ssword1');
 		  loading.endLoading();
 	 }
     });
@@ -215,27 +222,38 @@ function postMenu(username, password){
 	  success: function(data, status, xhr){
 			if(data.message == 'Logon Success')
 			{
-				//alert('hey');
-				//storeProfile(username, password);
 				$(".circleNotice").text(data.LeaveApproval);
-				//$(".circleNotice").text("98");
+				$(".circleNotice2").text(data.HelpdeskApproval);
+				hodrecommendnum = data.HelpdeskHODRecommendCount;
+				hodapprovalnum = data.HelpdeskHODApprovalCount;
+				ithodapprovalnum = data.HelpdeskITHODApprovalCount;
 			}
 			else
 			{
-				//alert(data.message);
+				hodrecommendnum = 0;
+				hodapprovalnum = 0;
+				ithodapprovalnum = 0;
 				navigator.notification.alert("No Profile, please relogin again.", function(){}, "Mewah Group", "Ok");
 			}
 			loading.endLoading();
 	  },
 	  error: function(xhr, ajaxOptions, thrownError) {
-		  alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
-		  loading.endLoading();
+	  	 //$(".circleNotice").text(12);
+		 //$(".circleNotice2").text(14);
+		 //hodrecommendnum = 2;
+		 //hodapprovalnum = 4;
+		 //ithodapprovalnum = 6;
+		 
+		 hodrecommendnum = 0;
+		 hodapprovalnum = 0;
+		 ithodapprovalnum = 0;
+		 alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
+		 loading.endLoading();
 	  }
     });
 }
 
 function storeProfile(username, password) {
-    
 	var db = window.openDatabase("Database", "1.0", "MewahGroup", 200000);
 	var profile = {
 		values1 : [username,password]
@@ -272,8 +290,6 @@ function successLogin(){
 	window.location="menu.html";
 }
 
-
-
 //**********************************************************************************//
 
 function loadleaverecord(){
@@ -286,7 +302,7 @@ function loadleaverecord(){
        else
 	   {
 		   var requestUrl=webUrlLeave + "?ID="+returnData.rows.item(0).userid+"&PW="+returnData.rows.item(0).password; 
-			$.ajax({
+		   $.ajax({
 			  url: requestUrl,
 			  type: "POST",
       		  contentType: "application/json; charset=utf-8",
@@ -307,10 +323,13 @@ function loadleaverecord(){
 			  },
 			  error: function(xhr, ajaxOptions, thrownError) {
 				  alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
-				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td><h1 class='listviewitemtitleLV'>LEE JIAN HAO IS A TESTER (HUMAN RESOURCES & ADMIN)</h1></td><td width=10%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12', '12');\" ></td></tr><tr><td><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Business Trip</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=10% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12', '12');\"></td></tr></table></li>");
-				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td><h1 class='listviewitemtitleLV'>LEE JIAN HAO (IT)</h1></td><td width=10%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12', '12');\" ></td></tr><tr><td><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Business Trip</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=10% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12', '12');\"></td></tr></table></li>");
-				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td><h1 class='listviewitemtitleLV'>LEE JIAN HAO (IT)</h1></td><td width=10%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12', '12');\" ></td></tr><tr><td><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Business Trip</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=10% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12', '12');\"></td></tr></table></li>");
-				 
+				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  //$(".scrollulLV").append("<li class='scrollliLV'><table class='listviewitemframeLV' border='0'><tr><td rowspan='2' style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLV'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails1LV'>2016-04-03 ~ 2016-04-10</p><p class='listviewitemdetails2LV'>Annual Leave</p><p class='listviewitemdetails3LV'>Reason : To Develop Mobile App for Android and IOS platform, Mewaholeo Industries Sdn Bhd</p></td><td width=20%><img class='listviewimgLV' style='vertical-align:middle;' src='img/tick.png' onclick=\"approveOneByOne('12','12');\" ></td></tr><tr><td width=20% style='vertical-align: top;'><img class='listviewimgLV' style='vertical-align:middle;' src='img/delete.png' onclick=\"rejectOneByOne('12','12');\"></td></tr></table></li>");
+				  
 				  //loading.endLoading();
 			  }
 			});
@@ -430,6 +449,7 @@ function postrejectone(tbl, refno, remarks){
 	   {
 		    //alert(returnData.rows.item(0).userid);
 			//alert(returnData.rows.item(0).password);
+			//alert(remarks);
 		    var requestUrl=webUrlLeaveRejectOne + "?ID="+returnData.rows.item(0).userid+"&PW="+returnData.rows.item(0).password+"&TBL="+tbl+"&Refno="+refno+"&rmk="+remarks;
 			//alert(requestUrl);
 			$.ajax({
@@ -462,36 +482,191 @@ function postrejectone(tbl, refno, remarks){
    });
 }
 
-
-
 //************************************************************************************/
 
-
-function postDevice(registerID, devicePlatform, imei){
-   var requestUrl=webUrlDeviceRegister; 
-    $.ajax({
-      url: requestUrl,
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      },
-	  data:"regID="+registerID+"&platform="+devicePlatform+"&imei="+imei,
-		timeout: apiTimeout,    
-		success: function(data){
-			if(data.message == 'Logon Success')
-			{
-				storeProfile(username, password);
-			}
-			else
-			{
-				//alert(data.message);
-				navigator.notification.alert(data.message, function(){}, "Mewah Group", "Ok");
-			}
-			loading.endLoading();
-		},
-		error: function(xhr, status, error) {
-		  alert(status);
-		  loading.endLoading();
-		}
-    });
+function loadITHelpdeskList(typeofhelpdeskIT){
+    $.support.cors = true;
+	dbmanager.getProfile(function(returnData){
+       if(returnData.rows.length==0)
+	   {
+		    alert('No Profile, please relogin again');
+	   }
+       else
+	   {
+		   var requestUrl=webUrlHelpDesk + "?ID="+returnData.rows.item(0).userid+"&PW="+returnData.rows.item(0).password+"&Type="+typeofhelpdeskIT; 
+		   $.ajax({
+			  url: requestUrl,
+			  type: "POST",
+      		  contentType: "application/json; charset=utf-8",
+	  		  dataType:"json",
+			  timeout: apiTimeout, 
+			  beforeSend : function(req) {
+             	req.setRequestHeader('Authorization', make_base_auth (returnData.rows.item(0).userid, returnData.rows.item(0).password));
+      		  },    
+			  success: function(data, status, xhr){
+					//alert(data.length);
+					for (var x = 0; x < data.length; x++) {
+						$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>"+ data[x].HelpdeskNo+"</p><p class='listviewitemdetails1LVhelpdesk'>"+data[x].Name+" ("+data[x].Department+")</p><p class='listviewitemdetails2LVhelpdesk'>"+data[x].RequestCategory+"</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('"+data[x].HelpdeskNo+"', '"+typeofhelpdeskIT+"');\" ></td></tr></table></li>");
+					}
+			  },
+			  error: function(xhr, ajaxOptions, thrownError) {
+			  	  //if(xhr.status==0){
+			  	  //	alert('0');
+			  	  //} else{
+			  	  //	alert(xhr.status);
+			  	  //	alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
+			  	  //}
+			  
+				  alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
+				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+				  //$(".scrollulLVhelpdesk").append("<li class='scrollliLVhelpdesk'><table class='listviewitemframeLVhelpdesk' border='0'><tr><td style='vertical-align:top; padding-top:8px;'><p class='listviewitemtitleLVhelpdesk'>MOI2015-DAR-0005</p><p class='listviewitemdetails1LVhelpdesk'>LEE JIAN HAO (IT)</p><p class='listviewitemdetails2LVhelpdesk'>Data Analysis Request</p></td><td width=20%><img class='listviewimgLVhelpdeskhelpdesk' style='vertical-align:middle;padding-top:8px;' src='img/viewdetail.png' onclick=\"opendetailshelpdesk('99999', '999999');\" ></td></tr></table></li>");
+			  }
+			});
+	   }
+	});
 }
+
+function postHelpDeskDetails(hdrefno, hdtype){
+   //alert('KKK');
+   loading.startLoading();
+   $.support.cors = true;
+   dbmanager.getProfile(function(returnData){
+   if(returnData.rows.length==0)
+	{
+		   loading.endLoading();
+		   alert('No Profile, please relogin again');
+		   window.history.back();
+	}
+    else
+	{
+		   var requestUrl=webUrlHelpDeskDetails + "?ID="+returnData.rows.item(0).userid+"&PW="+returnData.rows.item(0).password+"&REFNO="+hdrefno+"&TYPE="+hdtype; 
+		   //alert(requestUrl);
+    	   $.ajax({
+      			url: requestUrl,
+      			type: "POST",
+      			contentType: "application/json; charset=utf-8",
+      			dataType:"json",
+	  			timeout: apiTimeout,
+	  			beforeSend : function(req) {
+             		req.setRequestHeader('Authorization', make_base_auth (returnData.rows.item(0).userid, returnData.rows.item(0).password));
+      			},     
+	  			success: function(data, status, xhr){
+					if(data.message == 'Logon Success')
+					{
+						$("#request_refno").text(data.HelpdeskNo);
+						$("#request_date").text(data.RequestDate);
+						$("#request_requestorinfo").text(data.Name +" ("+data.Department+")");
+						$("#request_requestcategory").text(data.RequestCategory);
+						$("#request_desc").text(data.Description);
+					}
+					else
+					{
+						alert('Some error when connect to server.');
+						window.history.back();
+					}
+					loading.endLoading();
+	  		   },
+	  		   error: function(xhr, ajaxOptions, thrownError) {
+	  		   
+	  		   	 //$("#request_refno").text("MOI2015-DAR-0005sdfsdffsddfsdsfsd");
+				 //$("#request_date").text("2016/04/12 01:45:00 PM dafdfsdf");
+				 //$("#request_requestorinfo").text("LEE JIAN HAO Test length (Human Admin)");
+				 //$("#request_requestcategory").text("Data Analysis Request Testing gao gao");
+				 //$("#request_desc").text("This is just a testing data. Don't take seriously ya. Hahahahahahhahahhahahahahha gosh San Guo Yan Qi Zhu Ge Lianghrhrhhrhrhrhrhrhhrjj lim jun jie twillightdskfdsjkd sdfdsfsddfajkkjas wer werwer IT HelpDesk");
+	  		   
+	  		   	 loading.endLoading();
+		 		 alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
+				 window.history.back();
+	  		   }
+    	  });
+	}
+   });
+}
+
+function posthelpdeskapprove(jenishelpdesk, refno, remarks){
+	$.support.cors = true;
+	dbmanager.getProfile(function(returnData){
+       if(returnData.rows.length==0)
+	   {
+		    alert('No Profile, please relogin again');
+	   }
+       else
+	   {
+		    var requestUrl=webUrlHelpDeskApprove + "?ID="+returnData.rows.item(0).userid+"&PW="+returnData.rows.item(0).password+"&TYPE="+jenishelpdesk+"&REFNO="+refno+"&RMK="+remarks;
+			$.ajax({
+			  url: requestUrl,
+			  type: "POST",
+      		  contentType: "application/json; charset=utf-8",
+	  		  dataType:"json",
+			  timeout: apiTimeout,
+			  beforeSend : function(req) {
+             		req.setRequestHeader('Authorization', make_base_auth (returnData.rows.item(0).userid, returnData.rows.item(0).password));
+      		  },     
+			  success: function(data, status, xhr){
+					loading.endLoading();
+					
+					if(data.message == 'Approve Done')
+					{
+						navigator.notification.alert("Approve Successfully", function(){}, "Mewah Group", "Ok");
+					    location.reload();
+					}
+					else
+					{
+						navigator.notification.alert(data.message, function(){}, "Mewah Group", "Ok");
+					}
+			  },
+			  error: function(xhr, ajaxOptions, thrownError) {
+				  alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
+				  loading.endLoading();
+			  }
+			});
+	   }
+   });
+}
+
+function posthelpdeskreject(jenishelpdesk, refno, remarks){
+	$.support.cors = true;
+	dbmanager.getProfile(function(returnData){
+       if(returnData.rows.length==0)
+	   {
+		    alert('No Profile, please relogin again');
+	   }
+       else
+	   {
+		    var requestUrl=webUrlHelpDeskReject + "?ID="+returnData.rows.item(0).userid+"&PW="+returnData.rows.item(0).password+"&TYPE="+jenishelpdesk+"&REFNO="+refno+"&RMK="+remarks;
+			$.ajax({
+			  url: requestUrl,
+			  type: "POST",
+      		  contentType: "application/json; charset=utf-8",
+	  		  dataType:"json",
+			  timeout: apiTimeout,
+			  beforeSend : function(req) {
+             		req.setRequestHeader('Authorization', make_base_auth (returnData.rows.item(0).userid, returnData.rows.item(0).password));
+      		  },     
+			  success: function(data, status, xhr){
+					loading.endLoading();
+					
+					if(data.message == 'Reject Done')
+					{
+						navigator.notification.alert("Reject Successfully", function(){}, "Mewah Group", "Ok");
+					    location.reload();
+					}
+					else
+					{
+						navigator.notification.alert(data.message, function(){}, "Mewah Group", "Ok");
+					}
+			  },
+			  error: function(xhr, ajaxOptions, thrownError) {
+				  alert('Some error when connect to server.('+ajaxOptions+','+thrownError+')');
+				  loading.endLoading();
+			  }
+			});
+	   }
+   });
+}
+
+

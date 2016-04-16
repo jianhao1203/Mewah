@@ -54,6 +54,7 @@
 					
 					//window.location.href = link;
 					gcmregid =data.registrationId;
+					//gcmregid="hehehehe";
 				});
 
 				push.on('notification', function(data) {
@@ -84,6 +85,20 @@
                     navigator.app.exitApp();// Otherwise we quit the app.
                 }
             }
+            
+            function key(event){
+            	if(event.charCode==13 && /Android/ .test(navigator.userAgent)){
+            		event.preventDefault();
+            		document.getElementById('pwd').focus();
+            	}
+            }
+            
+             function keypwd(event){
+            	if(event.charCode==13 && /Android/ .test(navigator.userAgent)){
+            		event.preventDefault();
+            		login(gcmregid);
+            	}
+            }
         </script>
         <title>Login Page</title>
     </head>
@@ -95,9 +110,9 @@
                     <img class="appLogo" src="img/logo.png"/>
                 </div>
                 <div class="loginDetails">
-                    <input class="loginTextBox" placeholder="USER NAME" type="text" maxlength="15" id="username"></input>
+                    <input class="loginTextBox" placeholder="USER NAME" type="text" maxlength="15" id="username" onkeypress=key(event)></input>
                     
-                    <input class="pwdTextBox" placeholder="PASSWORD" type="password" maxlength="15" id="pwd"></input>
+                    <input class="pwdTextBox" placeholder="PASSWORD" type="password" maxlength="15" id="pwd" onkeypress=keypwd(event)></input>
                     
                     <button class="btnLogin" onclick="login(gcmregid);">Login</button>
                     

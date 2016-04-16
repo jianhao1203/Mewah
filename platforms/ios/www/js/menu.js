@@ -1,10 +1,25 @@
 
 function directLeave() {
-    window.location="leave.html";
+    //alert($(".circleNotice").text());
+	if($(".circleNotice").text()==0){
+		navigator.notification.alert("There are no pending leave approval records.", function(){}, "Mewah Group", "Ok");
+	} else{
+		window.location="leave.html";
+	}
+    //window.location="leave.html";
 }
 
-function directHelpDesk() {
-    window.location="helpdesklist.html";
+function directHelpDeskMenu(counthodrecomment,counthodapproval, countithodapproval) {
+    //alert($(".circleNotice2").text());
+	if($(".circleNotice2").text()==0){
+		navigator.notification.alert("There are no pending helpdesk approval records.", function(){}, "Mewah Group", "Ok");
+	} else{
+	    //alert(counthodrecomment);
+		//alert(counthodapproval);
+		//alert(countithodapproval);
+	
+		window.location="menu_helpdesk.html?counthodrecommend="+ counthodrecomment +"&counthodapproval="+counthodapproval+"&countithodapproval="+countithodapproval;
+	}
 }
 
 

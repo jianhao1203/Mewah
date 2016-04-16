@@ -9,9 +9,9 @@
 		<title>IT HelpDesk Page</title>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/webRequest.js"></script>
         <script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript" src="js/leave.js"></script>
+        <script type="text/javascript" src="js/webRequest.js"></script>
+		<script type="text/javascript" src="js/helpdesklist.js"></script>
 		<script type="text/javascript" src="js/jquery-mobile/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript">
             $(document).bind("mobileinit",function(){
@@ -20,14 +20,11 @@
             })
         </script>
         <script type="text/javascript" src="js/jquery-mobile/jquery.mobile-1.4.5.js"></script>
-		 
-		
         <link rel="stylesheet" type="text/css" href="css/index.css" /> 
 		<link rel="stylesheet" type="text/css" href="css/common.css" />
-		<link rel="stylesheet" type="text/css" href="css/leave.css" /> 
+		<link rel="stylesheet" type="text/css" href="css/helpdesk.css" /> 
 
         <script type="text/javascript">
-			
 			dbmanager.initdb();
 			dbmanager.createTable();
 		
@@ -43,11 +40,10 @@
 					//loading.endLoading();
 					window.history.back();
 				}
-                
             }
             
             function onBackKeyDown(e) {
-              e.preventDefault();
+               e.preventDefault();
                window.history.back();
             }
 			
@@ -60,17 +56,15 @@
                     <h2 style="color:#F18D1B; align:center; text-align:center;vertical-align:middle; font-size:8vw;" id="secondheadertext">Mewah</h2>
                 </div>
 				 <div class="backbuttonFrame">
-                    <img class="backLogo" onclick="closeLeave();" src="img/back.png"/>
+                    <img class="backLogo" onclick="closeHelpDesk();" src="img/back.png"/>
                 </div>
 				<div class="logoutbuttonFrame">
                     <img class="logoutLogo" onclick="postLogout();" src="img/logout.png"/>
                 </div>
-                <div class="titleFrame">
-                    <h3 class="headertext" id="headertext">IT HelpDesk</h3>
-                </div> 
-				 <div class="wrapperLV" id="wrapper">
-					<div class="scroll-contentLV" id="scroll-content">
-						<ul class="scrollulLV" id="scrollul">
+                <h2 class="headertext" id="headertext">IT HelpDesk</h2> 
+				 <div class="wrapperLVhelpdesk" id="wrapper">
+					<div class="scroll-contentLVhelpdesk" id="scroll-content">
+						<ul class="scrollulLVhelpdesk" id="scrollul">
 						</ul>
 						<br>
 					</div>
@@ -80,9 +74,9 @@
         </div>
 		<script type="text/javascript">
             app.initialize();
-			//setcopyrighttext();
-			loadleaverecord();
-			
+            typehd = getURLParameter('TypeHelpdesk');
+            //alert(typehd);
+			loadITHelpdeskList(typehd);
         </script>
     </body>
 </html>

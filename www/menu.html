@@ -27,6 +27,9 @@
 		<link rel="stylesheet" type="text/css" href="css/common.css" />
 		
         <script type="text/javascript">
+            var hodrecommendnum;
+            var hodapprovalnum;
+   			var ithodapprovalnum;
 			dbmanager.initdb();
 			dbmanager.createTable();
 			ValidateProfile();
@@ -72,7 +75,7 @@
                     <p class="circleNotice">
     							0		
   					</p>  
-                    <button class="menuItems2" >
+                    <button class="menuItems2" onclick="directHelpDeskMenu(hodrecommendnum,hodapprovalnum,ithodapprovalnum);">
                     	IT HelpDesk
                     </button>
                     <p class="circleNotice2">
